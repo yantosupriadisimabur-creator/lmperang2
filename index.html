@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Media Interaktif Perang Dunia II - Sejarah Tingkat Lanjut XII SMAN 3 Batam">
+<title>Media Interaktif — Perang Dunia II</title>
+<style>
+:root{
+  --primary:#1261a0;--primary-dark:#083b66;--primary-mid:#1976c9;--primary-light:#eaf5ff;
+  --accent:#55b6ff;--bg:#f7fbff;--surface:#fff;--text:#172331;--muted:#617184;
+  --border:#cfe2f2;--success:#16834b;--danger:#c53a43;--warning:#a96b00;
+  --shadow:0 12px 35px rgba(8,59,102,.10);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(85,182,255,.45);outline-offset:2px}
+.hidden{display:none!important}
+.container{width:min(1180px,calc(100% - 28px));margin:auto}
+header.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#06345c,#1261a0 55%,#2390d4);padding:44px 0 34px}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none}
+.hero:before{width:280px;height:280px;right:-100px;top:-120px}
+.hero:after{width:180px;height:180px;left:-90px;bottom:-100px}
+.hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:28px;position:relative;z-index:1}
+.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-weight:800;font-size:.78rem;opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.8rem);line-height:1.05;margin:.25rem 0 1rem}
+.hero p{margin:.35rem 0;color:#e9f5ff}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-box{padding:15px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.10);border-radius:14px;backdrop-filter:blur(6px)}
+.info-box strong{display:block;color:#fff;font-size:.82rem}
+.info-box span{font-size:.92rem;color:#e5f3ff}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);box-shadow:0 5px 18px rgba(8,59,102,.06)}
+.nav-wrap{display:flex;gap:9px;padding:12px 0;overflow-x:auto;scrollbar-width:none}
+.nav-wrap::-webkit-scrollbar{display:none}
+.nav-btn{flex:0 0 auto;border:1.5px solid var(--primary-dark);background:#fff;color:var(--primary-dark);padding:10px 17px;border-radius:999px;font-weight:750;transition:.25s}
+.nav-btn:hover{background:var(--primary-light);transform:translateY(-1px)}
+.nav-btn.active{background:linear-gradient(135deg,var(--primary-dark),var(--primary-mid));color:#fff;box-shadow:0 7px 18px rgba(18,97,160,.22)}
+main{padding:30px 0 60px}
+.section{display:none;animation:sectionIn .38s ease both}
+.section.active{display:block}
+@keyframes sectionIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.section-head{margin-bottom:22px}
+.section-head h2{font-size:clamp(1.65rem,3vw,2.4rem);margin:0;color:var(--primary-dark)}
+.section-head p{color:var(--muted);max-width:850px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:18px}
+.card h3{margin-top:0;color:var(--primary-dark)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary-dark);font-weight:800;font-size:.78rem}
+.callout{border-left:5px solid var(--primary);background:var(--primary-light);padding:16px 18px;border-radius:12px}
+.btn{border:0;border-radius:12px;padding:11px 18px;font-weight:800;background:linear-gradient(135deg,var(--primary-dark),var(--primary-mid));color:#fff;box-shadow:0 7px 16px rgba(18,97,160,.2);transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.secondary{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary-dark);box-shadow:none}
+.btn.danger{background:linear-gradient(135deg,#9f252e,#d84d57)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.accordion{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:10px 0}
+.accordion button{width:100%;border:0;background:#fff;text-align:left;padding:16px;font-weight:800;color:var(--primary-dark);display:flex;justify-content:space-between}
+.accordion .panel{display:none;padding:0 16px 16px;color:var(--muted)}
+.accordion.open .panel{display:block}
+.timeline{position:relative;margin:25px 0;padding-left:25px}
+.timeline:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:3px;background:linear-gradient(var(--primary),var(--accent));border-radius:5px}
+.time-item{position:relative;margin:0 0 17px}
+.time-dot{position:absolute;left:-22px;top:7px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--primary)}
+.time-btn{width:100%;text-align:left;border:1px solid var(--border);background:#fff;border-radius:14px;padding:14px 16px;transition:.2s}
+.time-btn:hover,.time-btn.selected{border-color:var(--primary);background:var(--primary-light)}
+.time-year{font-weight:900;color:var(--primary)}
+#timelineDetail{min-height:100px}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow .node{padding:13px 15px;border:1px solid var(--border);border-radius:13px;background:#fff;box-shadow:0 5px 15px rgba(8,59,102,.06);font-weight:700}
+.flow .arrow{font-size:1.3rem;color:var(--primary)}
+.compare-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+.compare-table th,.compare-table td{border:1px solid var(--border);padding:11px;text-align:left;vertical-align:top}
+.compare-table th{background:var(--primary-light);color:var(--primary-dark)}
+.video-card{display:flex;flex-direction:column;height:100%}
+.video-icon{height:120px;border-radius:14px;background:linear-gradient(135deg,#062e52,#238bd0);display:grid;place-items:center;color:#fff;font-size:3rem;margin-bottom:15px}
+.video-card .btn{margin-top:auto;text-align:center;text-decoration:none}
+.game-board{min-height:110px;padding:15px;border:2px dashed var(--border);border-radius:14px;background:#fbfdff}
+.draggable{display:inline-flex;align-items:center;padding:10px 13px;margin:5px;border:1px solid var(--primary);border-radius:10px;background:#fff;color:var(--primary-dark);font-weight:750;cursor:grab;box-shadow:0 4px 12px rgba(8,59,102,.08)}
+.draggable.dragging{opacity:.45}
+.dropzone{min-height:58px;padding:10px;border:2px dashed var(--primary);border-radius:11px;background:var(--primary-light);margin:8px 0}
+.dropzone.correct{border-color:var(--success);background:#edf9f2}
+.dropzone.wrong{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.feedback{margin-top:10px;font-weight:800}
+.success{color:var(--success)}.danger-text{color:var(--danger)}.muted{color:var(--muted)}
+.memory-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.memory-card{aspect-ratio:1/1;border:0;background:transparent;perspective:800px}
+.memory-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.memory-card.flipped .memory-inner{transform:rotateY(180deg)}
+.memory-front,.memory-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:13px;display:grid;place-items:center;padding:8px;text-align:center;font-weight:800;border:1px solid var(--border)}
+.memory-front{background:linear-gradient(135deg,var(--primary-dark),var(--primary-mid));color:#fff;font-size:1.5rem}
+.memory-back{background:#fff;color:var(--primary-dark);transform:rotateY(180deg)}
+.progress{height:10px;border-radius:99px;background:#e4eef6;overflow:hidden}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--primary-dark),var(--accent));transition:.35s}
+.question-options{display:grid;gap:10px}
+.option{border:1.5px solid var(--border);padding:14px;border-radius:13px;background:#fff;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.option:has(input:checked){border-color:var(--primary);background:var(--primary-light)}
+.eval-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:15px}
+.result-score{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:900;color:var(--primary)}
+.reflection-item{margin-bottom:16px}
+.reflection-item fieldset{border:1px solid var(--border);border-radius:13px;padding:14px}
+.reflection-item legend{font-weight:800;color:var(--primary-dark)}
+footer{background:linear-gradient(135deg,#052d4f,#0c5d97);color:#fff;padding:25px 0}
+.footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.footer-grid small{color:#d7ecfa}
+.identity-gate{position:fixed;inset:0;z-index:100;background:linear-gradient(135deg,#052d4f,#1261a0 60%,#2390d4);display:grid;place-items:center;padding:20px}
+.gate-card{width:min(520px,100%);background:#fff;border-radius:24px;padding:28px;box-shadow:0 25px 70px rgba(0,0,0,.2);animation:gateIn .5s ease}
+@keyframes gateIn{from{opacity:0;transform:scale(.96) translateY(15px)}to{opacity:1;transform:none}}
+.gate-card h1{color:var(--primary-dark);font-size:2rem}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;font-weight:800;margin-bottom:6px;color:var(--primary-dark)}
+.form-group input,.form-group select{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:11px;background:#fff}
+#toast{position:fixed;right:18px;bottom:18px;z-index:200;background:#0d2f4e;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(20px);opacity:0;pointer-events:none;transition:.25s}
+#toast.show{transform:none;opacity:1}
+.small{font-size:.88rem}
+.center{text-align:center}
+hr{border:0;border-top:1px solid var(--border);margin:20px 0}
+@media(max-width:800px){
+  .hero-grid,.grid-2,.grid-3{grid-template-columns:1fr}
+  .info-grid{grid-template-columns:1fr}
+  .memory-grid{grid-template-columns:repeat(4,1fr)}
+  .footer-grid{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:520px){
+  .container{width:min(100% - 20px,1180px)}
+  header.hero{padding:34px 0 28px}
+  .card{padding:17px}
+  .memory-grid{grid-template-columns:repeat(3,1fr)}
+  .eval-top{align-items:flex-start;flex-direction:column}
+  .flow{display:block}.flow .arrow{display:block;text-align:center;margin:4px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div id="identityGate" class="identity-gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <span class="badge">LAB MAYA SEJARAH</span>
+    <h1 id="gateTitle">Media Interaktif<br>Perang Dunia II</h1>
+    <p class="muted">Identitas dapat diisi jika ingin ditampilkan pada footer. Klik “Mulai Belajar” untuk langsung masuk ke halaman utama.</p>
+    <form id="identityForm">
+      <div class="form-group">
+        <label for="studentName">Nama</label>
+        <input id="studentName" type="text" autocomplete="name" placeholder="Masukkan nama lengkap (opsional)">
+      </div>
+      <div class="form-group">
+        <label for="studentClass">Kelas</label>
+        <select id="studentClass">
+          <option value="">Pilih kelas</option>
+          <option>X</option><option>XI</option><option>XII</option><option>XII SMA</option>
+        </select>
+      </div>
+      <button id="startBtn" class="btn" type="submit">Mulai Belajar</button>
+    </form>
+    <p class="small muted">Pengisian identitas bersifat opsional dan dapat dilengkapi kapan saja.</p>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">SMAN 3 BATAM • SEJARAH TINGKAT LANJUT XII</div>
+      <h1>Media Interaktif<br>“Perang Dunia II”</h1>
+      <p>Eksplorasi kronologis tentang lahirnya Fasisme dan Nazisme hingga peristiwa yang memicu Perang Dunia II.</p>
+      <div class="info-grid" style="margin-top:18px">
+        <div class="info-box"><strong>Mata Pelajaran</strong><span>Sejarah Tingkat Lanjut XII</span></div>
+        <div class="info-box"><strong>Unit</strong><span>Sejarah Tingkat Lanjut</span></div>
+        <div class="info-box"><strong>Konsep</strong><span>Latar belakang Perang Dunia II dari lahirnya Fasisme dan Nazisme hingga peristiwa pemicu perang.</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="info-box"><strong>Guru</strong><span>Yanto Supriadi, S.Pd.</span></div>
+      <div class="info-box" style="margin-top:12px"><strong>Kelas</strong><span>12 SMA</span></div>
+      <div class="info-box" style="margin-top:12px"><strong>Fase</strong><span>F</span></div>
+      <div class="info-box" style="margin-top:12px"><strong>Tujuan Pembelajaran</strong><span>Menganalisis latar belakang Perang Dunia II melalui sumber bacaan dan visual.</span></div>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Navigasi utama">
+  <div class="container nav-wrap">
+    <button class="nav-btn active" data-section="theorySection">📚 Teori</button>
+    <button class="nav-btn" data-section="videoSection">▶ Video</button>
+    <button class="nav-btn" data-section="gamesSection">🎮 Games</button>
+    <button class="nav-btn" data-section="evaluationSection">📝 Evaluasi</button>
+    <button class="nav-btn" data-section="reflectionSection">💭 Refleksi</button>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="card" style="padding:16px">
+    <div style="display:flex;justify-content:space-between;gap:15px;align-items:center">
+      <strong>Progress Belajar</strong><span id="progressText" class="small muted">Teori aktif</span>
+    </div>
+    <div class="progress" style="margin-top:8px"><span id="learningProgress"></span></div>
+  </div>
+
+  <section id="theorySection" class="section active">
+    <div class="section-head">
+      <span class="badge">MODUL 01</span>
+      <h2>Teori — Latar Belakang Perang Dunia II</h2>
+      <p>Pelajari hubungan sebab-akibat secara kronologis. Klik bagian yang ingin dieksplorasi.</p>
+    </div>
+
+    <div class="card">
+      <h3>Gambaran Besar</h3>
+      <div class="flow">
+        <div class="node">Pasca-Perang Dunia I</div><div class="arrow">→</div>
+        <div class="node">Ketidakpuasan & Krisis</div><div class="arrow">→</div>
+        <div class="node">Fasisme & Nazisme</div><div class="arrow">→</div>
+        <div class="node">Ekspansi Militer</div><div class="arrow">→</div>
+        <div class="node">Invasi Polandia</div><div class="arrow">→</div>
+        <div class="node">Perang Dunia II</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="accordion"><button type="button">A. Kondisi setelah Perang Dunia I <span>＋</span></button><div class="panel">Perang Dunia I meninggalkan korban besar, kerusakan ekonomi, dan perubahan politik. Di Jerman, ketentuan Perjanjian Versailles menimbulkan ketidakpuasan karena pembatasan militer, kewajiban reparasi, dan kehilangan wilayah. Situasi ini menjadi salah satu konteks yang kemudian dimanfaatkan oleh kelompok politik radikal.</div></div>
+        <div class="accordion"><button type="button">B. Perjanjian Versailles <span>＋</span></button><div class="panel">Perjanjian Versailles tahun 1919 mengatur hubungan Jerman dengan negara-negara pemenang Perang Dunia I. Ketentuan mengenai militer, wilayah, dan reparasi menjadi bagian dari perdebatan politik di Jerman pada masa Republik Weimar.</div></div>
+        <div class="accordion"><button type="button">C. Depresi Besar 1929 <span>＋</span></button><div class="panel">Krisis ekonomi global menyebabkan pengangguran dan ketidakstabilan sosial di berbagai negara. Di Jerman, kondisi ekonomi memperburuk ketidakpercayaan terhadap sistem politik dan membuka ruang bagi gerakan yang menawarkan solusi radikal.</div></div>
+        <div class="accordion"><button type="button">D. Lahirnya Fasisme Italia <span>＋</span></button><div class="panel">Benito Mussolini dan gerakan Fasis berkembang dalam suasana pascaperang yang penuh ketegangan. Fasisme menekankan nasionalisme ekstrem, kepemimpinan kuat, dan penolakan terhadap liberalisme serta gerakan kiri tertentu. Mussolini berkuasa setelah March on Rome pada 1922.</div></div>
+      </div>
+      <div>
+        <div class="accordion"><button type="button">E. Lahirnya Nazisme Jerman <span>＋</span></button><div class="panel">Partai Nazi berkembang di tengah krisis politik dan ekonomi Republik Weimar. Adolf Hitler diangkat sebagai Kanselir pada 30 Januari 1933. Setelah itu, rezim Nazi menghapus banyak lembaga demokratis, membangun negara diktatorial, melakukan persenjataan kembali, dan mengejar agenda ekspansionis.</div></div>
+        <div class="accordion"><button type="button">F. Ekspansi Jerman <span>＋</span></button><div class="panel">Jerman Nazi menjalankan kebijakan ekspansi, termasuk remiliterisasi Rheinland, Anschluss dengan Austria pada 1938, dan tekanan terhadap Cekoslowakia. Perkembangan ini meningkatkan ketegangan internasional.</div></div>
+        <div class="accordion"><button type="button">G. Ekspansi Italia dan Jepang <span>＋</span></button><div class="panel">Italia melakukan ekspansi, termasuk invasi Ethiopia pada 1935. Jepang memperluas kekuasaannya di Asia Timur. Ekspansi berbagai negara memperlemah upaya mempertahankan tatanan internasional pasca-Perang Dunia I.</div></div>
+        <div class="accordion"><button type="button">H. Invasi Polandia dan Pecahnya Perang <span>＋</span></button><div class="panel">Jerman menginvasi Polandia pada 1 September 1939. Inggris dan Prancis menyatakan perang terhadap Jerman pada 3 September 1939. Peristiwa tersebut menjadi titik pemicu utama pecahnya Perang Dunia II di Eropa.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Timeline Interaktif</h3>
+      <div class="timeline" id="timeline">
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1919 — Perjanjian Versailles membentuk salah satu konteks politik pasca-Perang Dunia I di Eropa."><span class="time-year">1919</span><br>Perjanjian Versailles</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1922 — Mussolini berkuasa setelah March on Rome dan membangun pemerintahan Fasis di Italia."><span class="time-year">1922</span><br>Mussolini berkuasa di Italia</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1929 — Depresi Besar memperburuk masalah ekonomi dan sosial di banyak negara, termasuk Jerman."><span class="time-year">1929</span><br>Depresi Besar</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1933 — Adolf Hitler menjadi Kanselir Jerman. Rezim Nazi kemudian mengonsolidasikan kekuasaan."><span class="time-year">1933</span><br>Hitler menjadi Kanselir</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1936 — Jerman melakukan remiliterisasi Rheinland, memperlihatkan semakin agresifnya kebijakan luar negeri Nazi."><span class="time-year">1936</span><br>Remiliterisasi Rheinland</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1938 — Anschluss Austria dan krisis Sudetenland meningkatkan ketegangan Eropa."><span class="time-year">1938</span><br>Anschluss Austria & Krisis Sudetenland</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="Agustus 1939 — Pakta Molotov–Ribbentrop antara Jerman dan Uni Soviet disepakati."><span class="time-year">1939</span><br>Pakta Molotov–Ribbentrop</button></div>
+        <div class="time-item"><span class="time-dot"></span><button class="time-btn" data-detail="1 September 1939 — Jerman menginvasi Polandia. 3 September Inggris dan Prancis menyatakan perang terhadap Jerman."><span class="time-year">1–3 Sept 1939</span><br>Invasi Polandia & deklarasi perang</button></div>
+      </div>
+      <div id="timelineDetail" class="callout">Klik salah satu peristiwa untuk melihat penjelasan.</div>
+    </div>
+
+    <div class="card">
+      <h3>Fasisme dan Nazisme</h3>
+      <p class="muted">Keduanya berkembang dalam konteks historis berbeda, tetapi sama-sama berkaitan dengan pemerintahan otoriter dan nasionalisme ekstrem. Nazisme juga memiliki ciri rasial dan antisemitisme yang sangat kuat.</p>
+      <table class="compare-table">
+        <thead><tr><th>Aspek</th><th>Fasisme Italia</th><th>Nazisme Jerman</th></tr></thead>
+        <tbody>
+          <tr><td>Tokoh utama</td><td>Benito Mussolini</td><td>Adolf Hitler</td></tr>
+          <tr><td>Konteks</td><td>Ketegangan politik pasca-Perang Dunia I dan nasionalisme Italia</td><td>Krisis Republik Weimar, ketidakpuasan pascaperang, dan krisis ekonomi</td></tr>
+          <tr><td>Karakter politik</td><td>Negara otoriter, nasionalisme, mobilisasi massa</td><td>Negara diktatorial, nasionalisme rasial, antisemitisme, mobilisasi massa</td></tr>
+          <tr><td>Ekspansi</td><td>Antara lain ke Ethiopia</td><td>Ekspansi wilayah di Eropa</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Contoh Kontekstual: Menghubungkan Sebab dan Akibat</h3>
+      <div class="callout">
+        <strong>Latihan berpikir historis:</strong>
+        Jangan melihat Perang Dunia II hanya sebagai satu peristiwa. Analisislah rangkaian kondisi yang saling berhubungan: kondisi pascaperang → krisis ekonomi dan politik → pertumbuhan gerakan radikal → pemerintahan otoriter → ekspansi → kegagalan pencegahan konflik → perang.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Sumber Belajar</h3>
+      <ul>
+        <li><a href="https://www.ruangguru.com/blog/perang-dunia-2" target="_blank" rel="noopener">Ruangguru — Perang Dunia 2</a></li>
+        <li><a href="https://id.wikipedia.org/wiki/Perang_Dunia_II" target="_blank" rel="noopener">Wikipedia Indonesia — Perang Dunia II</a></li>
+        <li><a href="https://www.zenius.net/blog/perang-dunia-2/" target="_blank" rel="noopener">Zenius — Perang Dunia 2</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="videoSection" class="section">
+    <div class="section-head"><span class="badge">MODUL 02</span><h2>Video Pembelajaran</h2><p>Gunakan video sebagai sumber visual tambahan untuk memahami hubungan politik, ekonomi, ideologi, ekspansi, dan pecahnya Perang Dunia II.</p></div>
+    <div class="grid-2">
+      <div class="card video-card"><div class="video-icon">▶</div><h3>Video 1 — Pengantar Perang Dunia II</h3><p class="muted">Gunakan video untuk memperkuat gambaran umum mengenai konteks Perang Dunia II.</p><a class="btn" href="https://youtu.be/WszxWbAK_Xg" target="_blank" rel="noopener">Tonton Video ↗</a></div>
+      <div class="card video-card"><div class="video-icon">▶</div><h3>Video 2 — Latar Belakang Perang</h3><p class="muted">Perhatikan faktor politik dan ekonomi yang berkembang sebelum perang.</p><a class="btn" href="https://youtu.be/ZhswESlnaZ8" target="_blank" rel="noopener">Tonton Video ↗</a></div>
+      <div class="card video-card"><div class="video-icon">▶</div><h3>Video 3 — Fasisme dan Nazisme</h3><p class="muted">Amati bagaimana ideologi dan pemerintahan otoriter berkembang di Eropa.</p><a class="btn" href="https://youtu.be/XXHf5uJL1es" target="_blank" rel="noopener">Tonton Video ↗</a></div>
+      <div class="card video-card"><div class="video-icon">▶</div><h3>Video 4 — Menuju Perang</h3><p class="muted">Gunakan video untuk meninjau rangkaian peristiwa yang mengarah pada perang.</p><a class="btn" href="https://youtu.be/i61hkRQuFA8" target="_blank" rel="noopener">Tonton Video ↗</a></div>
+    </div>
+  </section>
+
+  <section id="gamesSection" class="section">
+    <div class="section-head"><span class="badge">MODUL 03</span><h2>Games — Uji Pemahaman</h2><p>Belajar melalui tiga permainan. Semua game dapat diulang.</p></div>
+
+    <div class="card">
+      <h3>🎯 Game 1 — Susun Kronologi</h3>
+      <p class="muted">Seret peristiwa ke target sesuai urutan kronologis.</p>
+      <div id="chronologyBank" class="game-board"></div>
+      <div id="chronologyTargets" style="margin-top:12px"></div>
+      <div id="chronologyFeedback" class="feedback"></div>
+      <button class="btn secondary" id="resetChronology">Reset Game</button>
+    </div>
+
+    <div class="card">
+      <h3>🧩 Game 2 — Drag the Words</h3>
+      <p>Seret tahun yang tepat ke kalimat berikut.</p>
+      <div id="wordQuestion" class="callout"></div>
+      <div id="wordBank" class="game-board"></div>
+      <div id="wordDrop" class="dropzone" data-answer="1939">Seret jawaban ke sini</div>
+      <div id="wordFeedback" class="feedback"></div>
+      <button class="btn secondary" id="resetWords">Reset Game</button>
+    </div>
+
+    <div class="card">
+      <h3>🃏 Game 3 — Memory Game</h3>
+      <p class="muted">Buka dua kartu dan temukan pasangan konsep sejarah.</p>
+      <div id="memoryGrid" class="memory-grid"></div>
+      <div style="margin-top:14px"><strong>Pasangan ditemukan:</strong> <span id="memoryScore">0</span> / 5</div>
+      <button class="btn secondary" id="resetMemory" style="margin-top:10px">Reset Game</button>
+    </div>
+  </section>
+
+  <section id="evaluationSection" class="section">
+    <div class="section-head"><span class="badge">MODUL 04</span><h2>Evaluasi</h2><p>Uji pemahaman materi secara bertahap.</p></div>
+    <div id="evaluationIntro" class="card">
+      <h3>Petunjuk Pengerjaan</h3>
+      <ol>
+        <li>Evaluasi terdiri dari 20 soal.</li>
+        <li>Soal ditampilkan satu per satu.</li>
+        <li>Soal terdiri atas single choice, drag and drop, dan multiple choice.</li>
+        <li>Bacalah soal dengan teliti sebelum menjawab.</li>
+        <li>Pada soal drag and drop di perangkat sentuh, Anda juga dapat memilih item lalu target.</li>
+        <li>Hasil ditampilkan setelah seluruh soal selesai.</li>
+        <li>Evaluasi dapat diulang.</li>
+      </ol>
+      <button class="btn" id="startEvaluation">Mulai Evaluasi</button>
+    </div>
+    <div id="evaluationBox" class="card hidden"></div>
+    <div id="evaluationResult" class="card hidden center"></div>
+  </section>
+
+  <section id="reflectionSection" class="section">
+    <div class="section-head"><span class="badge">MODUL 05</span><h2>Refleksi Pembelajaran</h2><p>Pilih pernyataan yang paling menggambarkan pemahamanmu.</p></div>
+    <form id="reflectionForm" class="card">
+      <div class="reflection-item"><fieldset><legend>Saya memahami hubungan kondisi pasca-Perang Dunia I dengan munculnya ketidakpuasan politik.</legend><label class="option"><input required type="radio" name="r1" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r1" value="3"> Memahami</label><label class="option"><input type="radio" name="r1" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r1" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat menjelaskan faktor munculnya Fasisme di Italia.</legend><label class="option"><input required type="radio" name="r2" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r2" value="3"> Memahami</label><label class="option"><input type="radio" name="r2" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r2" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat menjelaskan faktor munculnya Nazisme di Jerman.</legend><label class="option"><input required type="radio" name="r3" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r3" value="3"> Memahami</label><label class="option"><input type="radio" name="r3" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r3" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat menyusun kronologi menuju Perang Dunia II.</legend><label class="option"><input required type="radio" name="r4" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r4" value="3"> Memahami</label><label class="option"><input type="radio" name="r4" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r4" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat menjelaskan hubungan ekspansi negara-negara totaliter dengan meningkatnya konflik internasional.</legend><label class="option"><input required type="radio" name="r5" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r5" value="3"> Memahami</label><label class="option"><input type="radio" name="r5" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r5" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat menjelaskan mengapa invasi Polandia menjadi pemicu pecahnya perang di Eropa.</legend><label class="option"><input required type="radio" name="r6" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r6" value="3"> Memahami</label><label class="option"><input type="radio" name="r6" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r6" value="1"> Masih perlu belajar</label></fieldset></div>
+      <div class="reflection-item"><fieldset><legend>Saya dapat membedakan karakteristik Fasisme dan Nazisme.</legend><label class="option"><input required type="radio" name="r7" value="4"> Sangat memahami</label><label class="option"><input type="radio" name="r7" value="3"> Memahami</label><label class="option"><input type="radio" name="r7" value="2"> Cukup memahami</label><label class="option"><input type="radio" name="r7" value="1"> Masih perlu belajar</label></fieldset></div>
+      <button class="btn" type="submit">Simpan Refleksi</button>
+    </form>
+    <div id="reflectionResult" class="card hidden"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><strong>Identitas User</strong><br><small id="footerIdentity">Belum ada identitas.</small></div>
+    <div><small>© 2026 Dikembangkan oleh Yanto Supriadi</small><br><button class="btn secondary small" id="resetData" style="margin-top:8px">Reset Data</button></div>
+  </div>
+</footer>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+const STORAGE_KEY = "historyWWII_identity";
+const PROGRESS_KEY = "historyWWII_progress";
+const REFLECTION_KEY = "historyWWII_reflection";
+
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+
+function toast(message){
+  const el=$("#toast"); el.textContent=message; el.classList.add("show");
+  clearTimeout(window.toastTimer); window.toastTimer=setTimeout(()=>el.classList.remove("show"),2400);
+}
+
+function getIdentity(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"null")}catch{return null} }
+function saveIdentity(data){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
+function getProgress(){try{return JSON.parse(localStorage.getItem(PROGRESS_KEY)||"{}")}catch{return {}}}
+function setProgress(key){const p=getProgress();p[key]=true;localStorage.setItem(PROGRESS_KEY,JSON.stringify(p));updateProgress()}
+
+const nameInput=$("#studentName"), classInput=$("#studentClass"), startBtn=$("#startBtn");
+function validateIdentity(){startBtn.disabled=false}
+nameInput.addEventListener("input",validateIdentity); classInput.addEventListener("change",validateIdentity);
+
+function enterApp(identity){
+  saveIdentity(identity);
+  $("#identityGate").classList.add("hidden");
+  $("#app").classList.remove("hidden");
+  $("#footerIdentity").innerHTML=`${escapeHtml(identity.name)}<br>Kelas: ${escapeHtml(identity.className)}`;
+  setProgress("identity");
+  toast("Identitas berhasil disimpan.");
+}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+const saved=getIdentity();
+if(saved){nameInput.value=saved.name||"";classInput.value=saved.className||"";validateIdentity()}
+$("#identityForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name = nameInput.value.trim() || "Pengguna";
+  const className = classInput.value || "Belum diisi";
+  enterApp({name, className});
+});
+
+$$(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    $$(".nav-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+    $$(".section").forEach(s=>s.classList.remove("active"));$("#"+btn.dataset.section).classList.add("active");
+    setProgress(btn.dataset.section.replace("Section",""));
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+function updateProgress(){
+  const p=getProgress(); const keys=["theory","video","games","evaluation","reflection"];
+  const done=keys.filter(k=>p[k]).length;
+  $("#learningProgress").style.width=((done/keys.length)*100)+"%";
+  $("#progressText").textContent=done?`${done} dari ${keys.length} modul dipelajari`:"Teori aktif";
+}
+updateProgress();
+
+$$(".accordion button").forEach(b=>b.addEventListener("click",()=>{
+  const a=b.parentElement;a.classList.toggle("open");b.querySelector("span").textContent=a.classList.contains("open")?"−":"＋";
+}));
+$$(".time-btn").forEach(b=>b.addEventListener("click",()=>{
+  $$(".time-btn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+  $("#timelineDetail").textContent=b.dataset.detail;
+}));
+
+/* GAMES: CHRONOLOGY */
+const chronologyData=[
+  ["1919","Perjanjian Versailles"],["1922","Mussolini berkuasa"],["1929","Depresi Besar"],
+  ["1933","Hitler menjadi Kanselir"],["1938","Anschluss Austria & Krisis Sudetenland"],["1939","Invasi Polandia"]
+];
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function makeDrag(el,data){el.draggable=true;el.dataset.value=data;el.addEventListener("dragstart",()=>{el.classList.add("dragging");window.dragValue=data});el.addEventListener("dragend",()=>el.classList.remove("dragging"))}
+function initChronology(){
+  const bank=$("#chronologyBank"), targets=$("#chronologyTargets");bank.innerHTML="";targets.innerHTML="";
+  shuffle(chronologyData).forEach(([year,text])=>{const d=document.createElement("div");d.className="draggable";d.textContent=text;makeDrag(d,year);bank.appendChild(d)});
+  chronologyData.forEach(([year,text],i)=>{
+    const z=document.createElement("div");z.className="dropzone";z.dataset.answer=year;z.innerHTML=`<strong>${i+1}. ${year}</strong> — seret peristiwa ke sini`;
+    addDropEvents(z);targets.appendChild(z);
+  });
+  $("#chronologyFeedback").textContent="";
+}
+function addDropEvents(zone){
+  zone.addEventListener("dragover",e=>e.preventDefault());
+  zone.addEventListener("drop",e=>{
+    e.preventDefault();const val=window.dragValue;
+    const item=$(`.draggable[data-value="${CSS.escape(val)}"]`);
+    if(val===zone.dataset.answer){zone.classList.add("correct");zone.innerHTML=`<strong>✓ ${zone.dataset.answer}</strong> — ${item?.textContent||""}`;item?.remove();checkChronology()}
+    else{zone.classList.add("wrong");setTimeout(()=>zone.classList.remove("wrong"),400);$("#chronologyFeedback").textContent="Belum tepat. Coba perhatikan urutan waktunya."}
+  });
+  zone.addEventListener("click",()=>{
+    const selected=document.querySelector(".draggable.selected");
+    if(selected){window.dragValue=selected.dataset.value;selected.classList.remove("selected");zone.dispatchEvent(new Event("drop"))}
+  });
+}
+function checkChronology(){
+  if(!$("#chronologyBank").querySelector(".draggable")){ $("#chronologyFeedback").textContent="🎉 Kronologi selesai! Semua peristiwa tersusun dengan tepat.";$("#chronologyFeedback").className="feedback success";setProgress("games");}
+}
+$("#resetChronology").addEventListener("click",initChronology);
+initChronology();
+
+/* GAMES: WORD */
+function initWords(){
+  $("#wordQuestion").innerHTML='Pada tanggal <strong>1 September ____</strong>, Jerman menginvasi Polandia.';
+  const bank=$("#wordBank");bank.innerHTML="";$("#wordDrop").textContent="Seret jawaban ke sini";$("#wordDrop").className="dropzone";$("#wordFeedback").textContent="";
+  ["1919","1922","1933","1939"].forEach(v=>{const d=document.createElement("div");d.className="draggable";d.textContent=v;makeDrag(d,v);d.addEventListener("click",()=>{ $$(".draggable",bank).forEach(x=>x.classList.remove("selected"));d.classList.add("selected")});bank.appendChild(d)});
+  const z=$("#wordDrop");z.ondragover=e=>e.preventDefault();z.ondrop=e=>{e.preventDefault();checkWord(window.dragValue)};
+  z.onclick=()=>{const s=bank.querySelector(".selected");if(s)checkWord(s.dataset.value)}
+}
+function checkWord(v){
+  const z=$("#wordDrop");
+  if(v==="1939"){z.textContent="✓ 1939 — Jawaban benar!";z.className="dropzone correct";$("#wordFeedback").textContent="Bagus! Invasi Polandia terjadi pada 1 September 1939.";$("#wordFeedback").className="feedback success";setProgress("games")}
+  else{$("#wordFeedback").textContent="Belum tepat. Ingat peristiwa pemicu perang di Eropa terjadi pada 1939.";$("#wordFeedback").className="feedback danger-text"}
+}
+$("#resetWords").addEventListener("click",initWords);initWords();
+
+/* GAMES: MEMORY */
+const memoryPairs=[["Hitler","Nazi"],["Mussolini","Fasisme"],["1939","Invasi Polandia"],["1919","Versailles"],["Jepang","Ekspansi Asia"]];
+let memoryState={first:null,lock:false,matches:0};
+function initMemory(){
+  memoryState={first:null,lock:false,matches:0};$("#memoryScore").textContent="0";
+  const grid=$("#memoryGrid");grid.innerHTML="";
+  shuffle(memoryPairs.flatMap((p,i)=>[{id:i,text:p[0]},{id:i,text:p[1]}])).forEach(card=>{
+    const b=document.createElement("button");b.className="memory-card";b.dataset.id=card.id;
+    b.innerHTML=`<div class="memory-inner"><div class="memory-front">?</div><div class="memory-back">${escapeHtml(card.text)}</div></div>`;
+    b.addEventListener("click",()=>flipMemory(b));grid.appendChild(b);
+  });
+}
+function flipMemory(card){
+  if(memoryState.lock||card.classList.contains("flipped")||card.classList.contains("matched"))return;
+  card.classList.add("flipped");
+  if(!memoryState.first){memoryState.first=card;return}
+  if(memoryState.first.dataset.id===card.dataset.id){
+    card.classList.add("matched");memoryState.first.classList.add("matched");memoryState.matches++;$("#memoryScore").textContent=memoryState.matches;memoryState.first=null;
+    if(memoryState.matches===memoryPairs.length){toast("🎉 Semua pasangan ditemukan!");setProgress("games")}
+  }else{
+    memoryState.lock=true;const first=memoryState.first;setTimeout(()=>{first.classList.remove("flipped");card.classList.remove("flipped");memoryState.first=null;memoryState.lock=false},750);
+  }
+}
+$("#resetMemory").addEventListener("click",initMemory);initMemory();
+
+/* EVALUATION */
+const questions=[
+ {type:"single",q:"Apa salah satu dampak penting Perjanjian Versailles terhadap Jerman?",o:["Penghapusan semua wilayah Jerman","Pembatasan militer dan kewajiban reparasi","Jerman menjadi negara demokrasi stabil","Jerman memperoleh koloni baru"],a:1},
+ {type:"single",q:"Siapakah tokoh utama Fasisme Italia?",o:["Joseph Stalin","Winston Churchill","Benito Mussolini","Franklin D. Roosevelt"],a:2},
+ {type:"single",q:"Kapan Adolf Hitler diangkat sebagai Kanselir Jerman?",o:["1919","1922","1929","1933"],a:3},
+ {type:"single",q:"Apa yang dimaksud dengan Anschluss dalam konteks 1938?",o:["Penyatuan Austria dengan Jerman","Invasi Polandia","Pakta Jerman–Italia","Pendirian Liga Bangsa-Bangsa"],a:0},
+ {type:"single",q:"Krisis ekonomi global yang dimulai pada 1929 dikenal sebagai...",o:["Revolusi Industri","Depresi Besar","Krisis Suez","Great Schism"],a:1},
+ {type:"single",q:"Negara yang diserbu Jerman pada 1 September 1939 adalah...",o:["Belgia","Polandia","Prancis","Austria"],a:1},
+ {type:"single",q:"Inggris dan Prancis menyatakan perang terhadap Jerman pada...",o:["1 September 1939","2 September 1939","3 September 1939","9 November 1938"],a:2},
+ {type:"drag",q:"Cocokkan tokoh dengan gerakan politik yang terkait.",pairs:[["Mussolini","Fasisme"],["Hitler","Nazisme"],["Stalin","Uni Soviet"]]},
+ {type:"drag",q:"Cocokkan tahun dengan peristiwa.",pairs:[["1919","Perjanjian Versailles"],["1933","Hitler menjadi Kanselir"],["1939","Invasi Polandia"]]},
+ {type:"drag",q:"Susun sebab-akibat berikut.",pairs:[["Krisis politik-ekonomi","Ketidakpuasan sosial"],["Ketidakpuasan sosial","Pertumbuhan gerakan radikal"],["Ekspansi militer","Meningkatnya konflik internasional"]]},
+ {type:"multi",q:"Manakah yang termasuk faktor yang membantu menjelaskan meningkatnya ketegangan menuju Perang Dunia II?",o:["Krisis ekonomi","Ekspansionisme","Kegagalan upaya menjaga perdamaian","Penemuan internet"],a:[0,1,2]},
+ {type:"multi",q:"Pernyataan yang sesuai dengan karakter pemerintahan Nazi adalah...",o:["Diktatorial","Nasionalisme rasial","Antisemitisme","Mendorong demokrasi liberal"],a:[0,1,2]},
+ {type:"multi",q:"Peristiwa yang berkaitan dengan ekspansi Jerman sebelum perang antara lain...",o:["Remiliterisasi Rheinland","Anschluss Austria","Krisis Sudetenland","Invasi Normandia 1944"],a:[0,1,2]},
+ {type:"multi",q:"Faktor yang dapat memperlemah sistem keamanan internasional sebelum perang adalah...",o:["Agresi negara-negara ekspansionis","Kegagalan pencegahan konflik","Keterbatasan Liga Bangsa-Bangsa","Pembentukan PBB 1945"],a:[0,1,2]},
+ {type:"multi",q:"Pernyataan yang tepat mengenai Fasisme Italia adalah...",o:["Berkaitan dengan Mussolini","Menekankan nasionalisme","Berkembang setelah Perang Dunia I","Dipimpin Hitler"],a:[0,1,2]},
+ {type:"multi",q:"Yang termasuk konteks munculnya Nazisme di Jerman adalah...",o:["Krisis Republik Weimar","Ketidakpuasan pascaperang","Krisis ekonomi","Revolusi digital"],a:[0,1,2]},
+ {type:"multi",q:"Dampak ekspansi militer terhadap hubungan internasional Eropa adalah...",o:["Meningkatkan ketegangan","Mendorong perlombaan kekuatan","Mengurangi rasa aman negara lain","Menghapus semua konflik"],a:[0,1,2]},
+ {type:"multi",q:"Peristiwa tahun 1939 yang berkaitan langsung dengan pecahnya perang di Eropa adalah...",o:["Invasi Polandia","Deklarasi perang Inggris dan Prancis","Pakta Molotov–Ribbentrop","March on Rome"],a:[0,1,2]},
+ {type:"multi",q:"Apa yang sebaiknya dianalisis untuk memahami latar belakang perang secara historis?",o:["Sebab-akibat","Kronologi","Konteks ekonomi-politik","Satu peristiwa tanpa konteks"],a:[0,1,2]},
+ {type:"multi",q:"Pernyataan yang membantu membedakan Fasisme dan Nazisme adalah...",o:["Tokoh utamanya berbeda","Nazisme memiliki ciri rasial dan antisemitisme yang sangat kuat","Keduanya berkembang dalam konteks Eropa antarperang","Keduanya identik sepenuhnya"],a:[0,1,2]}
+];
+let evalState={index:0,score:0,answers:[]};
+
+function startEvaluation(){
+  evalState={index:0,score:0,answers:[]};$("#evaluationIntro").classList.add("hidden");$("#evaluationResult").classList.add("hidden");$("#evaluationBox").classList.remove("hidden");renderQuestion();
+}
+$("#startEvaluation").addEventListener("click",startEvaluation);
+
+function renderQuestion(){
+  const q=questions[evalState.index], box=$("#evaluationBox"), pct=(evalState.index/questions.length)*100;
+  let content=`<div class="eval-top"><strong>Soal ${evalState.index+1} dari ${questions.length}</strong><span class="badge">${q.type==="single"?"Single Choice":q.type==="drag"?"Drag & Drop":"Multiple Choice"}</span></div><div class="progress"><span style="width:${pct}%"></span></div><hr><h3>${escapeHtml(q.q)}</h3>`;
+  if(q.type==="single") content+=`<div class="question-options">${q.o.map((x,i)=>`<label class="option"><input type="radio" name="evalAnswer" value="${i}"> ${escapeHtml(x)}</label>`).join("")}</div>`;
+  if(q.type==="multi") content+=`<p class="small muted">Pilih semua jawaban yang benar.</p><div class="question-options">${q.o.map((x,i)=>`<label class="option"><input type="checkbox" name="evalAnswer" value="${i}"> ${escapeHtml(x)}</label>`).join("")}</div>`;
+  if(q.type==="drag") content+=renderEvalDrag(q);
+  content+=`<div id="evalFeedback" class="feedback"></div><div style="display:flex;justify-content:space-between;margin-top:18px"><button class="btn secondary" id="prevEval" ${evalState.index===0?"disabled":""}>Kembali</button><button class="btn" id="nextEval">${evalState.index===questions.length-1?"Selesai":"Lanjut"}</button></div>`;
+  box.innerHTML=content;
+  $("#prevEval").addEventListener("click",()=>{if(evalState.index>0){evalState.index--;renderQuestion()}});
+  $("#nextEval").addEventListener("click",submitEvalQuestion);
+  if(q.type==="drag")wireEvalDrag(q);
+}
+
+function renderEvalDrag(q){
+  return `<p class="small muted">Seret setiap item kiri ke pasangan yang tepat. Pada perangkat sentuh, klik item lalu klik target.</p>
+  <div class="grid-2"><div id="evalDragBank" class="game-board">${shuffle(q.pairs.map((p,i)=>({i,text:p[0]}))).map(x=>`<div class="draggable eval-drag" data-i="${x.i}">${escapeHtml(x.text)}</div>`).join("")}</div>
+  <div id="evalTargets">${q.pairs.map((p,i)=>`<div class="dropzone eval-target" data-i="${i}">${escapeHtml(p[1])}</div>`).join("")}</div></div>`;
+}
+function wireEvalDrag(q){
+  let selected=null;
+  $$(".eval-drag").forEach(d=>{
+    makeDrag(d,d.dataset.i);
+    d.addEventListener("click",()=>{$$(".eval-drag").forEach(x=>x.classList.remove("selected"));d.classList.add("selected");selected=d});
+  });
+  $$(".eval-target").forEach(z=>{
+    z.addEventListener("dragover",e=>e.preventDefault());
+    z.addEventListener("drop",e=>{e.preventDefault();placeEvalDrag(z,window.dragValue)});
+    z.addEventListener("click",()=>{if(selected){placeEvalDrag(z,selected.dataset.i);selected=null}});
+  });
+}
+function placeEvalDrag(target,val){
+  if(val==null)return;
+  if(val===target.dataset.i){
+    const item=$(`.eval-drag[data-i="${CSS.escape(val)}"]`);target.classList.add("correct");target.dataset.done="1";target.textContent="✓ "+target.textContent;item?.remove();
+  }else{$("#evalFeedback").textContent="Ada pasangan yang belum tepat.";$("#evalFeedback").className="feedback danger-text";target.classList.add("wrong");setTimeout(()=>target.classList.remove("wrong"),400)}
+}
+function submitEvalQuestion(){
+  const q=questions[evalState.index];let correct=false;
+  if(q.type==="single"){
+    const v=document.querySelector('input[name="evalAnswer"]:checked');if(!v){toast("Pilih jawaban terlebih dahulu.");return}correct=Number(v.value)===q.a;
+  }else if(q.type==="multi"){
+    const vals=$$('input[name="evalAnswer"]:checked').map(x=>Number(x.value)).sort((a,b)=>a-b);if(!vals.length){toast("Pilih minimal satu jawaban.");return}correct=JSON.stringify(vals)===JSON.stringify([...q.a].sort((a,b)=>a-b));
+  }else{
+    const done=$$(".eval-target").every(x=>x.dataset.done==="1");if(!done){toast("Selesaikan semua pasangan drag and drop.");return}correct=true;
+  }
+  if(correct)evalState.score++;
+  evalState.answers.push(correct);
+  if(evalState.index<questions.length-1){evalState.index++;renderQuestion()}else finishEvaluation();
+}
+function finishEvaluation(){
+  $("#evaluationBox").classList.add("hidden");const percent=Math.round(evalState.score/questions.length*100),id=getIdentity();
+  let feedback=percent>=90?"Pemahaman materi sangat baik.":percent>=75?"Pemahaman materi sudah baik.":percent>=60?"Pemahaman materi cukup. Beberapa konsep perlu dipelajari kembali.":"Silakan pelajari kembali materi dan coba evaluasi sekali lagi.";
+  $("#evaluationResult").classList.remove("hidden");
+  $("#evaluationResult").innerHTML=`<h3>Evaluasi Selesai</h3><div class="result-score">${percent}</div><p><strong>${escapeHtml(id?.name||"Siswa")}</strong> • ${escapeHtml(id?.className||"")}</p><p>Jumlah benar: <strong>${evalState.score}</strong> dari ${questions.length}<br>Jumlah salah: <strong>${questions.length-evalState.score}</strong></p><div class="callout">${feedback}</div><button class="btn" id="retryEval" style="margin-top:15px">Ulangi Evaluasi</button><button class="btn secondary" id="backTheory" style="margin:15px 0 0 8px">Pelajari Materi Lagi</button>`;
+  $("#retryEval").addEventListener("click",startEvaluation);$("#backTheory").addEventListener("click",()=>{$('[data-section="theorySection"]').click()});
+  setProgress("evaluation");toast("Evaluasi selesai.");
+}
+
+/* REFLECTION */
+$("#reflectionForm").addEventListener("submit",e=>{
+  e.preventDefault();const vals=$$("#reflectionForm input:checked").map(x=>Number(x.value));if(vals.length<7){toast("Lengkapi semua refleksi.");return}
+  localStorage.setItem(REFLECTION_KEY,JSON.stringify(vals));const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+  const label=avg>=3.5?"Sangat memahami":avg>=2.75?"Memahami":avg>=2?"Cukup memahami":"Masih perlu belajar";
+  $("#reflectionResult").classList.remove("hidden");$("#reflectionResult").innerHTML=`<h3>Ringkasan Refleksi</h3><p>Rata-rata pilihanmu: <strong>${avg.toFixed(1)}</strong> / 4</p><div class="callout">${label}. Gunakan hasil ini untuk menentukan bagian materi yang ingin dipelajari kembali.</div>`;
+  setProgress("reflection");toast("Refleksi tersimpan.");
+});
+
+/* RESET */
+$("#resetData").addEventListener("click",()=>{
+  if(confirm("Apakah Anda yakin ingin menghapus data identitas dan progres?")){
+    localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(PROGRESS_KEY);localStorage.removeItem(REFLECTION_KEY);location.reload();
+  }
+});
+
+/* Update video progress when visited */
+$$(".nav-btn").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.section==="videoSection")setProgress("video")}));
+</script>
+</body>
+</html>
